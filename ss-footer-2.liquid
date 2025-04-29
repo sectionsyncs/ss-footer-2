@@ -60,24 +60,11 @@
         </div>
         <div class="ss-newsletter-bottom-area">
             <ul class="ss-links-wrapper">
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">Home</a>
-                </li>
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">Experience</a>
-                </li>
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">News</a>
-                </li>
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">About us</a>
-                </li>
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">Jobs</a>
-                </li>
-                <li class="ss-link-item">
-                    <a href="" class="ss-link">Contact</a>
-                </li>
+                {% for link in section.settings.bottom_menu.links %}
+                    <li class="ss-link-item">
+                        <a href="{{ link.url }}" class="ss-link">{{ link.title }}</a>
+                    </li>    
+                {% endfor %}
             </ul>
             <ul class="ss-footer-social">
                 {% if section.settings.facebook %}
@@ -141,6 +128,16 @@
         }
     ],
     "settings": [
+        {
+            "type": "header",
+            "content": "Menu"
+        },
+        {
+            "type": "link_list",
+            "id": "bottom_menu",
+            "label": "Bottom Menu",
+            "default": "main-menu"
+        },
         {
             "type": "header",
             "content": "Social Media"
