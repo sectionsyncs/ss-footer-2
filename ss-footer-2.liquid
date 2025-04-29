@@ -1,0 +1,279 @@
+{{ 'ss-footer-2.css' | asset_url | stylesheet_tag }}
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --ss-top_background-color: {{ section.settings.top_background_color.red }}, {{ section.settings.top_background_color.green }}, {{ section.settings.top_background_color.blue }};
+        --ss-top_background-opacity: {{ section.settings.top_background_opacity | divided_by: 100.00 }};
+        --ss-bottom_background-color: {{ section.settings.bottom_background_color.red }}, {{ section.settings.bottom_background_color.green }}, {{ section.settings.bottom_background_color.blue }};
+        --ss-bottom_background-opacity: {{ section.settings.bottom_background_opacity | divided_by: 100.00 }};
+        --ss-top-text-color: {{ section.settings.top_text_color.red }}, {{ section.settings.top_text_color.green }}, {{ section.settings.top_text_color.blue }};
+        --ss-bottom-text-color: {{ section.settings.bottom_text_color.red }}, {{ section.settings.bottom_text_color.green }}, {{ section.settings.bottom_text_color.blue }};
+        --ss-input-text-color: {{ section.settings.box_text_color.red }}, {{ section.settings.box_text_color.green }}, {{ section.settings.box_text_color.blue }};
+        --ss-input-background-color: {{ section.settings.box_background_color.red }}, {{ section.settings.box_background_color.green }}, {{ section.settings.box_background_color.blue }};
+        --ss-button-background-color: {{ section.settings.button_background_color.red }}, {{ section.settings.button_background_color.green }}, {{ section.settings.button_background_color.blue }};
+        --ss-button-text-color: {{ section.settings.button_icon_color.red }}, {{ section.settings.button_icon_color.green }}, {{ section.settings.button_icon_color.blue }};
+    }
+{% endstyle %}
+<div class="ss-background-area">
+    <div class="ss-inner-container">
+        <div class="ss-newsletter-container">
+            {% form 'customer', class: 'ss-newsletter-form' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="ss-newsletter-form__field-wrapper">
+                    <h3 class="ss-title">
+                        Newsletter
+                    </h3>
+                    <div class="ss-field">
+                        <input
+                            id="NewsletterForm--{{ section.id }}"
+                            type="email"
+                            name="contact[email]"
+                            class="ss-field__input"
+                            value="{{ form.email }}"
+                            aria-required="true"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            autocomplete="email"
+                            {% if form.errors %}
+                                autofocus
+                                aria-invalid="true"
+                                aria-describedby="Newsletter-error--{{ section.id }}"
+                            {% elsif form.posted_successfully? %}
+                                aria-describedby="Newsletter-success--{{ section.id }}"
+                            {% endif %}
+                            placeholder="Enter your email"
+                            required
+                        > 
+                        <button type="submit" class="ss-button ss-button--primary ss-button--full-width">
+                            <span class="ss-hidden-text">
+                                Subscribe
+                            </span>
+                            <div class="ss-svg-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.540428 10.327C-0.206023 10.7186 -0.175056 11.2922 0.607525 11.6018L2.92623 12.5192C3.70946 12.8302 4.89462 12.6605 5.55849 12.1425L15.6275 4.20183C16.2895 3.68118 16.3604 3.75796 15.7856 4.37344L7.82559 12.8934C7.24882 13.507 7.41914 14.2605 8.20494 14.5644L8.47656 14.6702C9.26236 14.9741 10.543 15.4844 11.3237 15.8018L13.8953 16.8489C14.6766 17.1663 15.5114 16.7922 15.7333 15.9792L19.6527 1.5728C19.874 0.759892 19.4443 0.414731 18.6978 0.805698L0.540428 10.327Z" fill="currentColor"/>
+                                    <path d="M6.9036 19.7586C6.85779 19.8961 8.48941 17.3961 8.48941 17.3961C8.9507 16.6915 8.68876 15.8509 7.90941 15.5322L6.13005 14.8038C5.3507 14.4851 4.97715 14.8593 5.29973 15.638C5.29973 15.638 6.9507 19.6173 6.9036 19.7586Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            {% endform %}
+        </div>
+        <div class="ss-newsletter-bottom-area">
+            <ul class="ss-links-wrapper">
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">Home</a>
+                </li>
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">Experience</a>
+                </li>
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">News</a>
+                </li>
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">About us</a>
+                </li>
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">Jobs</a>
+                </li>
+                <li class="ss-link-item">
+                    <a href="" class="ss-link">Contact</a>
+                </li>
+            </ul>
+            <ul class="ss-footer-social">
+                {% if section.settings.facebook %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.facebook }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "Facebook" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if section.settings.twitter %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.twitter }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "Twitter" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if section.settings.instagram %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.instagram }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "Instagram" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if section.settings.pinterest %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.pinterest }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "Pinterest" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if section.settings.youtube %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.youtube }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "Youtube" %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if section.settings.linked_in %}
+                    <li class="ss-social-link-item">
+                        <a class="ss-social-link" href="{{ section.settings.linked_in }}" target="_blank">
+                            {% render 'ss-social-icon', icon: "LinkedIn" %}
+                        </a>
+                    </li>
+                {% endif %}
+                
+            </ul>
+            <div class="ss-footer-branding">
+                <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "SS Footer 2",
+    "class": "ss-footer-2",
+    "tag": "footer",
+    "presets": [
+        {
+            "name":"SS Footer 2"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Social Media"
+        },
+        {
+            "type": "url",
+            "id": "facebook",
+            "label": "Facebook URL"
+        },
+        {
+            "type": "url",
+            "id": "twitter",
+            "label": "Twitter URL"
+        },
+        {
+            "type": "url",
+            "id": "instagram",
+            "label": "Instagram URL"
+        },
+        {
+            "type": "url",
+            "id": "pinterest",
+            "label": "Pinterest URL"
+        },
+        {
+            "type": "url",
+            "id": "youtube",
+            "label": "YouTube URL"
+        },
+        {
+            "type": "url",
+            "id": "linked_in",
+            "label": "LinkedIn URL"
+        },
+        {
+            "type": "header",
+            "content": "Color Settings"
+        },
+        {
+            "type": "color",
+            "id": "top_background_color",
+            "label": "Top Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "range",
+            "id": "top_background_opacity",
+            "label": "Top Background Opacity",
+            "unit": "%",
+            "min": 1,
+            "max": 100,
+            "step": 1, 
+            "default": 10
+        },
+        {
+            "type": "color",
+            "id": "bottom_background_color",
+            "label": "Bottom Background Color",
+            "default": "#0A142F"
+        },
+        {
+            "type": "range",
+            "id": "bottom_background_opacity",
+            "label": "Bottom Background Opacity",
+            "unit": "%",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "default": 100
+        },
+        {
+            "type": "color",
+            "id": "top_text_color",
+            "label": "Top Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "bottom_text_color",
+            "label": "Bottom Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "box_background_color",
+            "label": "Box Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "box_text_color",
+            "label": "Box Text Color",
+            "default": "#0A142F"
+        },
+        {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button Background Color",
+            "default": "#0081fe"
+        },
+        {
+            "type": "color",
+            "id": "button_icon_color",
+            "label": "Button Icon Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "header",
+            "content": "Padding Settings"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding Top",
+            "unit": "px",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 40
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding Bottom",
+            "unit": "px",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 40
+        }
+    ],
+    "blocks": [
+        
+    ]
+}
+{% endschema %}
