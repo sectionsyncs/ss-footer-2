@@ -4,6 +4,8 @@
   box-shadow: none;
   border: none;
   outline: none;
+  min-width: unset;
+  max-width: unset;
 }
 .ss-footer-2 .ss-background-area {
   background: rgba(var(--ss-bottom_background-color), var(--ss-bottom_background-opacity));
